@@ -23,7 +23,7 @@ const generarTexto = async (prompt) => {
 
   try {
     const response = await fetch('https://api.openai.com/v1/completions', data, { headers });
-      const text = response.data;
+      const text = response.data.text;
       // const text = response.data.choices[0].text;
     return text;
   } catch (error) {

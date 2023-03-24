@@ -1,6 +1,7 @@
-const { Configuration, OpenAIApi } = require("openai");
+// const { Configuration, OpenAIApi } = require("openai");
 require('dotenv').config()
 
+let miPeli ='Star Wars'
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
@@ -23,7 +24,7 @@ const generarTexto = async (prompt) => {
 
   try {
     const response = await fetch('https://api.openai.com/v1/completions', data, { headers });
-      const text = response.data.text;
+      const text = response.data;
       // const text = response.data.choices[0].text;
     return text;
   } catch (error) {
@@ -32,9 +33,8 @@ const generarTexto = async (prompt) => {
   }
 };
 
-const prompt = "Convertir títulos de películas en emoji.\n\nVolver al futuro: 👨👴🚗🕒 \nBatman: 🤵🦇 \nTransformers: 🚗🤖 \nStar Wars:\n";
+const prompt = `Convertir títulos de películas en emoji.\n\nVolver al futuro: 👨👴🚗🕒 \nBatman: 🤵🦇 \nTransformers: 🚗🤖 \n${miPeli}:\n`;
 
 generarTexto(prompt)
-  .then((texto) => console.log({texto}))
+  .then((texto) => console.log(texto))
   .catch((error) => console.error(error));
-
